@@ -44,7 +44,7 @@
                 <width>680</width>
 
                 <control type="image">
-                    <description>OpenELEC logo</description>
+                    <description>LibreELEC logo</description>
                     <top>20</top>
                     <left>60</left>
                     <texture>logotype.png</texture>

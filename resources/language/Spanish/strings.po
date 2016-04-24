@@ -1,7 +1,7 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Dev Update
-# Addon id: script.openelec.devupdate
-# Addon Provider: Leopold
+# Addon Name: LibreELEC Dev Update
+# Addon id: script.libreelec.devupdate
+# Addon Provider: miigotu
 msgid ""
 msgstr ""
 "Project-Id-Version: Kodi Addons\n"

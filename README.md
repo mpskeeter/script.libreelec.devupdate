@@ -9,4 +9,4 @@ This is a temporary addon, not sure if I will maintain it. I only wanted an easi
 #Instructions:  
 1. Click "Download zip"  
 2. Rename it to `script.libreelec.devupdate-0.0.4.zip`  
-3. Install zip in Kodi  
+3. Install zip in LibreELEC  

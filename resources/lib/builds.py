@@ -206,10 +206,12 @@ class BaseExtractor(object):
             self.url = url
 
     def _response(self):
-        response = requests.get(self.url, timeout=timeout)
-        if not response:
+        try:
+            response = requests.get(self.url, timeout=timeout)
+        except requests.exceptions.RequestException:
             msg = "Build URL error: status {}".format(response.status_code)
             raise BuildURLError(msg)
+
         return response
 
     def _text(self):
@@ -457,24 +459,24 @@ def sources():
     """
     _sources = OrderedDict()
 
-    builds_url = BuildsURL("http://snapshots.libreelec.tv",
-                           info_extractors=[CommitInfoExtractor()])
-    _sources["Official Snapshot Builds"] = builds_url
+    # builds_url = BuildsURL("http://snapshots.openelec.tv",
+    #                        info_extractors=[CommitInfoExtractor()])
+    # _sources["Official Snapshot Builds"] = builds_url
 
     _sources["Milhouse Builds"] = MilhouseBuildsURL()
 
     if libreelec.debug_system_partition():
         _sources["Milhouse Builds (debug)"] = MilhouseBuildsURL(subdir="debug")
 
-    if arch.startswith("RPi"):
-        builds_url = BuildsURL("http://resources.pichimney.com/LibreELEC/dev_builds",
-                               info_extractors=[CommitInfoExtractor()])
-        _sources["Chris Swan RPi Builds"] = builds_url
-
-    _sources["Official Releases"] = BuildsURL("http://libreelec.mirrors.uk2.net",
-                                              extractor=OfficialReleaseLinkExtractor)
-    _sources["Official Archive"] = BuildsURL("http://archive.libreelec.tv",
-                                             extractor=ReleaseLinkExtractor)
+    # if arch.startswith("RPi"):
+    #     builds_url = BuildsURL("http://resources.pichimney.com/openelec/dev_builds",
+    #                            info_extractors=[CommitInfoExtractor()])
+    #     _sources["Chris Swan RPi Builds"] = builds_url
+    #
+    # _sources["Official Releases"] = BuildsURL("http://openelec.mirrors.uk2.net",
+    #                                           extractor=OfficialReleaseLinkExtractor)
+    # _sources["Official Archive"] = BuildsURL("http://archive.openelec.tv",
+    #                                          extractor=ReleaseLinkExtractor)
 
     return _sources
 
@@ -486,7 +488,7 @@ def latest_build(source):
     build_sources = sources()
     try:
         build_url = build_sources[source]
-    except KeyError:
+    except Exception:
         return None
     else:
         return build_url.latest()

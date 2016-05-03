@@ -1,3 +1,9 @@
+0.0.5
+ - Changed to LibreElec icons, thanks ZeCompadre
+
+0.0.4
+ - Disabled official OpenElec sources, and Chris Swan builds
+
 0.0.1
  - Sourced from ls80/script.openelec.devupdate
  - Changed all references of OpenELEC to LibreELEC
